@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage ('Compile Feature Stage') {
+        stage ('Compile Stabi Stage') {
 
             steps {
                 withMaven(maven : 'maven_3_5_0') {
@@ -11,7 +11,7 @@ pipeline {
             }
         }
 
-        stage ('Testing Feature Stage') {
+        stage ('Testing Stabi Stage') {
 
             steps {
                 withMaven(maven : 'maven_3_5_0') {
