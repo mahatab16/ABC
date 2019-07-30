@@ -57,7 +57,7 @@
 
     <distributionManagement>
         <repository>
-            <id>infosys-abc-feature-release</id>
+            <id>nexus</id>
             <url>http://34.93.8.172:8081/repository/infosys-abc-feature-release/</url>
         </repository>
     </distributionManagement>
