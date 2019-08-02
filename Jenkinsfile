@@ -24,7 +24,7 @@ pipeline {
 
             steps {
                 withMaven(maven : 'maven_3_5_0') {
-                    sh """mvn sonar:sonar \
+                    sh """mvn sonar:sonar
                          -Dsonar.github.pullRequest=${ghprPullId} \ 
                          -Dsonar.projectKey=abc_sonar \
                          -Dsonar.host.url=http://34.68.137.4:9000 \
