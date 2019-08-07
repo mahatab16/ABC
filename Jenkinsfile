@@ -17,26 +17,16 @@ pipeline {
             }
         }
         
-        stage ('Compile Feature Stage') {
+        stage ('Clean Compile Test Package Feature Stages') {
 
             steps {
                 withMaven(maven : 'maven_3_5_0') {
                     script {
-                         maven.mavenclean()
+                         maven.mavenGoals()
                     }
                 }
             }
-        }
-        
-        stage ('Testing Feature Stage') {
-
-            steps {
-                withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn test'
-                }
-            }
-        }
-
+        }     
          stage ('Run Sonar Analysis Stage on Feature') {
 
             steps {
