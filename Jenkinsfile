@@ -1,32 +1,52 @@
+@Library('my-shared-library') _
+
+//evenOrOdd(currentBuild.getNumber())
+//log.info 'Starting'
+//log.warning 'Nothing to do!'
+
 pipeline {
     agent any
-
+    
     stages {
-        stage ('Compile Stabi Stage') {
-
+        stage('Git Checkout') {
             steps {
-                withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn clean compile'
-                }
+            gitCheckout(
+                branch: "Stabi",
+                url: "https://github.com/MyInfosys/ABC.git"
+                )
             }
         }
-
-        stage ('Testing Stabi Stage') {
-
-            steps {
-                withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn test'
-                }
-            }
-        }
-
-        stage ('Testing Deploy Stabi Stage') {
+        
+        stage ('Clean Compile Test Package Feature Stages') {
 
             steps {
                 withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn deploy'
+                    script {
+                         maven.mavenGoals()
+                    }
                 }
             }
-        }                   
+        }     
+         stage ('Run Sonar Analysis Stage on Feature') {
+
+            steps {
+                withMaven(maven : 'maven_3_5_0') {
+                    script {
+                         sonar.sonarScan()
+                    }
+                }
+            }
+        }               
+                
+         stage ('Deploy To Nexus Feature Stage') {
+
+            steps {
+                withMaven(maven : 'maven_3_5_0') {
+                    script {
+                         nexus.nexusDeploy()
+                    }
+                }
+            }
+        }                
     }
 }
