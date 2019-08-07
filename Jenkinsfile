@@ -22,7 +22,9 @@ pipeline {
             steps {
                 withMaven(maven : 'maven_3_5_0') {
                     //sh 'mvn clean compile'
-                    maven.mavenclean 'mvn clean compile'
+                    script {
+                         maven.mavenclean 'mvn clean compile'
+                    }
                 }
             }
         }
