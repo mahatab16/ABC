@@ -58,8 +58,14 @@
     <distributionManagement>
         <repository>
             <id>nexus</id>
-            <url>http://34.93.209.243:8081/repository/infosys-abc-stabi-snapshot/</url>
+            <name>Internal Releases</name>
+            <url>http://34.93.209.243:8081/repository/infosys-abc-feature-release/</url>
         </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>Internal Snapshot Releases</name>
+            <url>http://34.93.209.243:8081/repository/infosys-abc-stabi-snapshot/</url>
+        </snapshotRepository>
     </distributionManagement>
 
 </project>
